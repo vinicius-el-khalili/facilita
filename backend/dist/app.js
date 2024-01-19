@@ -1,3 +1,3 @@
-import { hey } from "./helper.js";
-console.log(hey, hey);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 //# sourceMappingURL=app.js.map
