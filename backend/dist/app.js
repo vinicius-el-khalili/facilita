@@ -9,14 +9,21 @@ const client = new Client({
     password: "123654",
     database: "clientdb"
 });
+client.connect();
 // express app
 const app = express();
 // middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // app routes
-app.get("/", (req, res) => {
-    console.log("Test");
+app.get("/", async (req, res) => {
+    try {
+        const result = await client.query('SELECT * FROM clients');
+        res.status(200).json(result.rows);
+    }
+    catch (error) {
+        res.status(500).json("Query fail");
+    }
 });
 // server
 app.listen(3000, () => {
