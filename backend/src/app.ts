@@ -20,10 +20,27 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // app routes
-app.get("/", async (req,res) => {
+app.get("/", async(req,res)=>{
     try {
-        const result = await client.query('SELECT * FROM clients')
+        const result = await client.query("SELECT * FROM clients")
         res.status(200).json(result.rows)
+    } catch(error) {
+        res.status(500).json("Query fail")
+    }
+})
+
+app.post("/add",async(req,res)=>{
+    try {
+        console.log({req:req.body})
+        const result = await client.query("INSERT INTO clients(client_email,client_phone,client_x,client_y,client_name) VALUES($1, $2, $3, $4, $5)",
+        [
+            req.body.email,
+            req.body.phone,
+            req.body.x,
+            req.body.y,
+            req.body.name
+        ])
+        res.status(200).json("ok")
     } catch(error) {
         res.status(500).json("Query fail")
     }
