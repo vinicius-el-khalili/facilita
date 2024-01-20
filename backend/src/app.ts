@@ -4,12 +4,14 @@ import pkg from 'pg';
 import { NNMethod } from "./utils/NearestNeighbor/NearestNeighbor.js";
 
 type clientType = {
-    "client": string
-    "client_email": string
-    "client_phone": string
-    "client_x": string
-    "client_y": string
-    "client_name": string
+
+    "id": string
+    "nome": string
+    "email": string
+    "telefone": string
+    "x": string
+    "y": string
+
 }
 
 const { Client } = pkg
@@ -49,15 +51,19 @@ app.get("/", async(req,res)=>{
 app.post("/add",async(req,res)=>{
     try {
 
-        const {email,phone,x,y,name} = req.body
+        const { nome,email,telefone,x,y } = req.body
 
-        await client.query(
-        "INSERT INTO clients(client_email,client_phone,client_x,client_y,client_name) VALUES($1, $2, $3, $4, $5)",
-        [ email,phone,x,y,name ])
+        console.log(req.body)
+        const result = await client.query(
+        "INSERT INTO clients(nome,email,telefone,x,y) VALUES($1, $2, $3, $4, $5)",
+        [ nome,email,telefone,x,y ])
+
+        console.log(result)
 
         res.status(200).json("ok")
 
     } catch(error) {
+        console.log(error.message)
         res.status(500).json("Query fail")
     }
 })
@@ -66,7 +72,7 @@ app.delete("/delete/:id",async(req,res)=>{
     try {
 
         await client.query(
-        "DELETE FROM clients WHERE client=$1",
+        "DELETE FROM clients WHERE id=$1",
         [req.params.id])
         
         res.status(200).json("ok")
@@ -81,16 +87,17 @@ app.get("/routes", async (req,res) => {
     try {
 
         const result = await client.query<{
-            client: string,
-            client_x: string,
-            client_y: string
+            id: string,
+            x: string,
+            y: string
         }>(
-        "SELECT client, client_x, client_y FROM clients"
+        "SELECT client, x, y FROM clients"
         )
 
         const rows = result.rows
-        const nodes = rows.map( (row)=>({ x: Number(row.client_x), y: Number(row.client_y) }) )
+        const nodes = rows.map( (row)=>({ x: Number(row.x), y: Number(row.y) }) )
         const path = NNMethod(nodes)
+        
         res.status(200).json(path)
 
     } catch(error) {
@@ -101,5 +108,7 @@ app.get("/routes", async (req,res) => {
 
 // server
 app.listen(3000,()=>{
+    
     console.log("Server is listening at port 3000")
+
 })

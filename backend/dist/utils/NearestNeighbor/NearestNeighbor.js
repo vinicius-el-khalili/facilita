@@ -34,7 +34,6 @@ export function NNMethod(nodes) {
         visitedKeys.push(currentKey);
         currentKey = nextKey;
     }
-    console.log(visitedKeys);
-    return visitedKeys;
+    return visitedKeys.map(Number);
 }
 //# sourceMappingURL=NearestNeighbor.js.map

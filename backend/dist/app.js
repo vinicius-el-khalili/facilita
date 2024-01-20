@@ -28,17 +28,20 @@ app.get("/", async (req, res) => {
 });
 app.post("/add", async (req, res) => {
     try {
-        const { email, phone, x, y, name } = req.body;
-        await client.query("INSERT INTO clients(client_email,client_phone,client_x,client_y,client_name) VALUES($1, $2, $3, $4, $5)", [email, phone, x, y, name]);
+        const { nome, email, telefone, x, y } = req.body;
+        console.log(req.body);
+        const result = await client.query("INSERT INTO clients(nome,email,telefone,x,y) VALUES($1, $2, $3, $4, $5)", [nome, email, telefone, x, y]);
+        console.log(result);
         res.status(200).json("ok");
     }
     catch (error) {
+        console.log(error.message);
         res.status(500).json("Query fail");
     }
 });
 app.delete("/delete/:id", async (req, res) => {
     try {
-        await client.query("DELETE FROM clients WHERE client=$1", [req.params.id]);
+        await client.query("DELETE FROM clients WHERE id=$1", [req.params.id]);
         res.status(200).json("ok");
     }
     catch (error) {
@@ -47,9 +50,9 @@ app.delete("/delete/:id", async (req, res) => {
 });
 app.get("/routes", async (req, res) => {
     try {
-        const result = await client.query("SELECT client, client_x, client_y FROM clients");
+        const result = await client.query("SELECT client, x, y FROM clients");
         const rows = result.rows;
-        const nodes = rows.map((row) => ({ x: Number(row.client_x), y: Number(row.client_y) }));
+        const nodes = rows.map((row) => ({ x: Number(row.x), y: Number(row.y) }));
         const path = NNMethod(nodes);
         res.status(200).json(path);
     }

@@ -65,7 +65,6 @@ export function NNMethod (
         currentKey = nextKey
     }
 
-    console.log(visitedKeys)
-    return visitedKeys
+    return visitedKeys.map(Number)
 
 }
