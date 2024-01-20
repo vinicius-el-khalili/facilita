@@ -6,21 +6,35 @@ function getGraph(nodes) {
 function getDistance(node1, node2) {
     return Math.sqrt((node1.x - node2.x) ** 2 + (node1.y - node2.y) ** 2);
 }
-function getNearestNeighbor(graph, index, visitedIndexes) {
+function getNearestNeighbor(graph, currentKey, visitedKeys) {
     let minimumDistance = Infinity;
     let nearestNode = null;
-    let node = graph[index];
-    for (let _node_ of Object.values(graph)) {
-        //pass
+    let currentNode = graph[currentKey];
+    console.log("--", currentKey);
+    for (const [key, node] of Object.entries(graph)) {
+        if (key == currentKey || visitedKeys.includes(key)) {
+            continue;
+        }
+        let distance = getDistance(currentNode, node);
+        if (distance < minimumDistance) {
+            minimumDistance = distance;
+            nearestNode = key;
+        }
+        console.log({ currentKey, key, distance, minimumDistance, nearestNode });
     }
+    return nearestNode;
 }
-const nodes = [
-    { x: 1, y: 2 },
-    { x: 3, y: 4 },
-    { x: 1, y: 3 },
-    { x: 2, y: 2 }
-];
-const graph = getGraph(nodes);
-getNearestNeighbor(graph, "0", []);
-export {};
+export function NNMethod(nodes) {
+    const graph = getGraph(nodes);
+    let visitedKeys = [];
+    let currentKey = "0";
+    let nextKey;
+    for (let i = 0; i < nodes.length; i++) {
+        nextKey = getNearestNeighbor(graph, currentKey, visitedKeys);
+        visitedKeys.push(currentKey);
+        currentKey = nextKey;
+    }
+    console.log(visitedKeys);
+    return visitedKeys;
+}
 //# sourceMappingURL=NearestNeighbor.js.map

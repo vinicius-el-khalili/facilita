@@ -1,7 +1,7 @@
 
 type nodeType = { x: number, y: number }
-type nodeIndex = string
-type graphType = { [key:nodeIndex]: nodeType }
+type nodeKey = string
+type graphType = { [key:nodeKey]: nodeType }
 
 function getGraph (
     nodes:nodeType[]
@@ -24,25 +24,48 @@ function getDistance (
 
 function getNearestNeighbor (
     graph:graphType,
-    index:nodeIndex,
-    visitedIndexes:nodeIndex[]
+    currentKey:nodeKey,
+    visitedKeys:nodeKey[]
 ){
 
     let minimumDistance:number = Infinity
-    let nearestNode:nodeIndex|null = null
-    let node:nodeType = graph[index]
+    let nearestNode:nodeKey|null = null
+    let currentNode:nodeType = graph[currentKey]
 
-    for (let _node_ of Object.values(graph)) {
-        //pass
+    console.log("--",currentKey)
+    for ( const [key,node] of Object.entries(graph) ){
+
+        if( key==currentKey || visitedKeys.includes(key) ){
+            continue
+        }
+        let distance = getDistance(currentNode,node)
+        if ( distance < minimumDistance ){
+            minimumDistance = distance
+            nearestNode = key
+        }
+        console.log({currentKey,key,distance,minimumDistance,nearestNode})
     }
+
+    return nearestNode
 
 }
 
-const nodes = [
-    {x:1,y:2},
-    {x:3,y:4},
-    {x:1,y:3},
-    {x:2,y:2}
-]
-const graph = getGraph(nodes)
-getNearestNeighbor(graph,"0",[])
+export function NNMethod (
+    nodes:nodeType[]
+){
+
+    const graph = getGraph(nodes)
+    let visitedKeys: nodeKey[] = []
+    let currentKey:nodeKey = "0"
+    let nextKey: nodeKey
+
+    for ( let i=0; i<nodes.length; i++ ){
+        nextKey = getNearestNeighbor(graph,currentKey,visitedKeys)
+        visitedKeys.push(currentKey)
+        currentKey = nextKey
+    }
+
+    console.log(visitedKeys)
+    return visitedKeys
+
+}

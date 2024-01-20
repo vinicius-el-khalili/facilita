@@ -1,6 +1,7 @@
 import bodyParser from "body-parser";
 import express from "express";
 import pkg from 'pg';
+import { NNMethod } from "./utils/NearestNeighbor/NearestNeighbor.js";
 const { Client } = pkg;
 const client = new Client({
     host: "localhost",
@@ -27,13 +28,8 @@ app.get("/", async (req, res) => {
 });
 app.post("/add", async (req, res) => {
     try {
-        const result = await client.query("INSERT INTO clients(client_email,client_phone,client_x,client_y,client_name) VALUES($1, $2, $3, $4, $5)", [
-            req.body.email,
-            req.body.phone,
-            req.body.x,
-            req.body.y,
-            req.body.name
-        ]);
+        const { email, phone, x, y, name } = req.body;
+        await client.query("INSERT INTO clients(client_email,client_phone,client_x,client_y,client_name) VALUES($1, $2, $3, $4, $5)", [email, phone, x, y, name]);
         res.status(200).json("ok");
     }
     catch (error) {
@@ -42,10 +38,20 @@ app.post("/add", async (req, res) => {
 });
 app.delete("/delete/:id", async (req, res) => {
     try {
-        const result = await client.query("DELETE FROM clients WHERE client=$1", [
-            req.params.id
-        ]);
+        await client.query("DELETE FROM clients WHERE client=$1", [req.params.id]);
         res.status(200).json("ok");
+    }
+    catch (error) {
+        res.status(500).json("Query fail");
+    }
+});
+app.get("/routes", async (req, res) => {
+    try {
+        const result = await client.query("SELECT client, client_x, client_y FROM clients");
+        const rows = result.rows;
+        const nodes = rows.map((row) => ({ x: Number(row.client_x), y: Number(row.client_y) }));
+        const path = NNMethod(nodes);
+        res.status(200).json(path);
     }
     catch (error) {
         res.status(500).json("Query fail");
