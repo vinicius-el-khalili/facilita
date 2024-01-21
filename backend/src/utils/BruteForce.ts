@@ -1,57 +1,46 @@
-type CoordinatesType = number[]
-type GraphType = {
-    [key: number]: CoordinatesType
-}
+type CoordinatesType = { x:number, y: number }
+type AdjacencyMatrix = number[][]
 
-function getGraph (
-    coordinatesList:CoordinatesType[]
-){
-
-    let graph:GraphType = {}
-    graph[0]=[0,0] // Origin
-    coordinatesList.map((coordinates,index) => {
-        graph[index+1]=coordinates
-    })
-    return graph
-}
-
-function getDistance (
-    coordinates1:CoordinatesType,
-    coordinates2:CoordinatesType,
-){
-
+const getDistance = (coordinates1:CoordinatesType, coordinates2:CoordinatesType) => {
+    console.log(coordinates1,coordinates2)
     return Math.sqrt(
-        (coordinates1[0] - coordinates2[0])**2 +
-        (coordinates1[1] - coordinates2[1])**2
+        (coordinates1.x-coordinates2.x)**2 +
+        (coordinates1.y-coordinates2.y)**2
     )
-
 }
 
-function BruteForce (
-    coordinatesList:CoordinatesType[]
-){
+{`
+    Seja D(i,j) a distância entre dois nós i,j e seja N o número de nós.
+    Matriz adjacência:
+    [
+        [ D(0,0), D(0,1), D(0,2), ...,D(0,N) ],
+        [ D(1,0), D(1,1), D(1,2), ...,D(1,N) ],
+        ...
+        [ D(N,0), D(N,1), D(N,2), ...,D(N,N) ],
+    ]
+`}
 
-    let N = coordinatesList.length
-    let counter = 0
-    for (let i=0; i<N; i++) {
-        for (let j=i+1; j<N; j++) {
-            
-            counter ++
-            console.log(counter,i,j)
-            
+const getGraph = (coordinatesList:CoordinatesType[]) => {
+    let graph: AdjacencyMatrix = []
+    for (let i=0; i<coordinatesList.length; i++) {
+        graph.push([])
+        for (let j=0; j<coordinatesList.length; j++) {
+            graph[i].push(0)
         }
     }
-
+    for (let i=0; i<coordinatesList.length; i++) {
+        for (let j=i+1; j<coordinatesList.length; j++) {
+            graph[i][j] = graph[j][i] = getDistance(coordinatesList[i],coordinatesList[j])
+        }
+    }
+    console.log(graph)
 }
 
-const coordinatesList = [
-    [ 1.1, 2.2 ],
-    [ 2.1, 2.2 ],
-    [ 3.1, 3.2 ],
-    [ 4.1, 4.2 ],
-    [ 5.1, 5.2 ],
-    [ 5.1, 5.2 ],
-    [ 5.1, 5.2 ],
-]
 
-BruteForce(coordinatesList)
+const coordinates = [
+    {x:0, y:0},
+    {x:0, y:1},
+    {x:1, y:1},
+    {x:1, y:0},
+]
+getGraph(coordinates)
