@@ -1,6 +1,9 @@
 import pkg from 'pg';
 const { Client } = pkg
 import { configDotenv } from 'dotenv';
+import { createDatabase } from './createDatabase.js';
+import { createClientSchema } from './createClientSchema.js';
+import { createClientTable } from './createClientTable.js';
 
 export async function connectToDatabase(): Promise<false|pkg.Client> {
 
@@ -17,10 +20,6 @@ export async function connectToDatabase(): Promise<false|pkg.Client> {
         password: process.env.POSTGRES_PASSWORD,
 
     }) 
-
-    console.log(process.env.POSTGRES_PASSWORD) 
-    console.log(process.env.POSTGRES_USER) 
-    console.log(process.env.POSTGRES_HOST)
 
     try {
 
@@ -39,24 +38,29 @@ export async function connectToDatabase(): Promise<false|pkg.Client> {
 
     client = new Client({
 
-        host: process.env.HOST,
-        port: Number(process.env.PORT),
-        user: process.env.USER,
-        password: process.env.PASSWORD,
-        database: process.env.DATABASE
+        host: process.env.POSTGRES_HOST,
+        port: Number(process.env.POSTGRES_PORT),
+        user: process.env.POSTGRES_USER,
+        password: process.env.POSTGRES_PASSWORD,
+        database: process.env.POSTGRES_DATABASE
 
     })
 
     try {
 
-        console.log("Connecting to database...")
+        console.log("\nConnecting to database...")
         await client.connect()
-        console.log("* Connected to database *")
-        return client
+        console.log(`* Connected to database ${process.env.POSTGRES_DATABASE}\n`)
+        return client 
 
     } catch(error) {
 
-        console.log(error.message)
+        console.log("! ERROR CONNECTING TO DATABASE !\n>",error.message,"\n")
+        if (error.message==`database "${process.env.POSTGRES_DATABASE}" does not exist`){
+            await createDatabase()
+            await createClientSchema()
+            await createClientTable()
+        }
         return false
 
     }

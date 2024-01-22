@@ -26,8 +26,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // app routes
-
 app.get("/", async(req,res)=>{
+
     try {
 
         if(!client){ return }
@@ -39,8 +39,10 @@ app.get("/", async(req,res)=>{
         res.status(200).json(result.rows)
 
     } catch(error) {
+
         console.log(error.message)
         res.status(500).json("Query fail")
+        
     }
 })
 
