@@ -2,7 +2,7 @@ import style from "./RegisterForm.module.scss"
 const RegisterForm = () => {
     return (
         <div className={style.RegisterForm}>
-            RegisterForm
+            <h1>Cadastrar Cliente</h1>
         </div>
     );
 }

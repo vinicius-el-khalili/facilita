@@ -3,12 +3,12 @@
     border-bottom: none;
     display: grid;
     grid-template-columns: 1fr auto;
-    .registerButton {
+    .registerButtonContainer {
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 1rem;
-        .button {
+        .registerButton {
             box-shadow: var(--boxShadow);
             padding: 6px;
             border-radius: var(--borderRadius);
@@ -18,6 +18,12 @@
             cursor: pointer;
             &:hover {
                 background-color: lightgray;
+            }
+        }
+        .registerButtonOn {
+            background-color: gray;
+            &:hover {
+                background-color: gray;
             }
         }
     }

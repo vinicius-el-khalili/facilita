@@ -12,9 +12,9 @@ const Toolbar = () => {
 
             <SearchBox/>
 
-            <div className={style.registerButton}>
+            <div className={style.registerButtonContainer}>
                 <div
-                className={style.button}
+                className={`${style.registerButton} ${registerForm&&style.registerButtonOn}`}
                 onClick={()=>{setRegisterForm(!registerForm)}}
                 >
                     <FaPlus/> Cadastrar cliente
