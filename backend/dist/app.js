@@ -1,23 +1,8 @@
 import bodyParser from "body-parser";
 import express from "express";
-import pkg from 'pg';
 import { NNMethod } from "./utils/NearestNeighbor/NearestNeighbor.js";
-const { Client } = pkg;
-const client = new Client({
-    host: process.env.HOST,
-    port: 5432,
-    user: "postgres",
-    password: "123",
-    database: "test"
-});
-try {
-    console.log("Connecting to database...");
-    await client.connect();
-    console.log("* Connected to database *");
-}
-catch (error) {
-    console.log(error.message);
-}
+import { connectToDatabase } from "./db/connectToDatabase.js";
+let client = await connectToDatabase();
 // express app 
 const app = express();
 // middleware
@@ -26,6 +11,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app routes
 app.get("/", async (req, res) => {
     try {
+        if (!client) {
+            return;
+        }
         const result = await client.query("SELECT * FROM clients");
         res.status(200).json(result.rows);
     }
@@ -36,8 +24,11 @@ app.get("/", async (req, res) => {
 });
 app.post("/add", async (req, res) => {
     try {
+        if (!client) {
+            res.status(500).json("Database fail");
+            return;
+        }
         const { nome, email, telefone, x, y } = req.body;
-        console.log(req.body);
         const result = await client.query("INSERT INTO clients(nome,email,telefone,x,y) VALUES($1, $2, $3, $4, $5)", [nome, email, telefone, x, y]);
         console.log(result);
         res.status(200).json("ok");
@@ -49,6 +40,10 @@ app.post("/add", async (req, res) => {
 });
 app.delete("/delete/:id", async (req, res) => {
     try {
+        if (!client) {
+            res.status(500).json("Database fail");
+            return;
+        }
         await client.query("DELETE FROM clients WHERE id=$1", [req.params.id]);
         res.status(200).json("ok");
     }
@@ -58,6 +53,10 @@ app.delete("/delete/:id", async (req, res) => {
 });
 app.get("/routes", async (req, res) => {
     try {
+        if (!client) {
+            res.status(500).json("Database fail");
+            return;
+        }
         const result = await client.query("SELECT client, x, y FROM clients");
         const rows = result.rows;
         const nodes = rows.map((row) => ({ x: Number(row.x), y: Number(row.y) }));

@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import express from "express";
 import pkg from 'pg';
 import { NNMethod } from "./utils/NearestNeighbor/NearestNeighbor.js";
+import { connectToDatabase } from "./db/connectToDatabase.js";
 
 type clientType = {
 
@@ -14,22 +15,7 @@ type clientType = {
 
 }
 
-const { Client } = pkg
-
-const client = new Client({
-    host:process.env.HOST,
-    port:5432,
-    user:"postgres",
-    password:"123",
-    database: "test"
-})
-try {
-    console.log("Connecting to database...")
-    await client.connect()
-    console.log("* Connected to database *")
-} catch(error) {
-    console.log(error.message)
-}
+let client = await connectToDatabase()
 
 
 // express app 
@@ -44,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.get("/", async(req,res)=>{
     try {
 
+        if(!client){ return }
         const result = 
         await client.query<clientType>(
         "SELECT * FROM clients"
@@ -60,9 +47,8 @@ app.get("/", async(req,res)=>{
 app.post("/add",async(req,res)=>{
     try {
 
+        if(!client){ res.status(500).json("Database fail"); return }
         const { nome,email,telefone,x,y } = req.body
-
-        console.log(req.body)
         const result = await client.query(
         "INSERT INTO clients(nome,email,telefone,x,y) VALUES($1, $2, $3, $4, $5)",
         [ nome,email,telefone,x,y ])
@@ -80,6 +66,7 @@ app.post("/add",async(req,res)=>{
 app.delete("/delete/:id",async(req,res)=>{
     try {
 
+        if(!client){ res.status(500).json("Database fail"); return }
         await client.query(
         "DELETE FROM clients WHERE id=$1",
         [req.params.id])
@@ -95,6 +82,7 @@ app.get("/routes", async (req,res) => {
 
     try {
 
+        if(!client){ res.status(500).json("Database fail"); return }
         const result = await client.query<{
             id: string,
             x: string,
