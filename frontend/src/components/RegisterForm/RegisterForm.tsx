@@ -18,29 +18,32 @@ const RegisterForm = () => {
             <form onSubmit={handleSubmit}>
 
                 <div className={style.inputField}>
-                    <p>Nome</p>
                     <input
                     type="text"
+                    placeholder="Nome"
                     value={name?name:""}
                     onChange={(e)=>{setName(e.target.value)}}
+                    required
                     />
                 </div>
                 
                 <div className={style.inputField}>
-                    <p>Email</p>
                     <input
                     type="text"
+                    placeholder="Email"
                     value={email?email:""}
                     onChange={(e)=>{setEmail(e.target.value)}}
+                    required
                     />
                 </div>
 
                 <div className={style.inputField}>
-                    <p>Telefone</p>
                     <input
                     type="text"
+                    placeholder="Telefone"
                     value={phone?phone:""}
                     onChange={(e)=>{setPhone(e.target.value)}}
+                    required
                     />
                 </div>
 
@@ -49,20 +52,22 @@ const RegisterForm = () => {
                     <div className={style.inputs}>
 
                         <div className={style.coordinateInput}>
-                            <div className={style.xy}>X</div>
                             <input
                             type="number"
+                            placeholder="X"
                             value={x?x:""}
                             onChange={(e)=>{setX(Number(e.target.value))}}
+                            required
                             />
                         </div>
 
                         <div className={style.coordinateInput}>
-                            <div className={style.xy}>Y</div>
                             <input
                             type="number"
+                            placeholder="Y"
                             value={y?y:""}
                             onChange={(e)=>{setY(Number(e.target.value))}}
+                            required
                             />
                         </div>
 
@@ -73,7 +78,7 @@ const RegisterForm = () => {
                 <button
                 className={style.submitButton}
                 type="submit">
-                    Submit
+                    Cadastrar
                 </button>
 
             </form>

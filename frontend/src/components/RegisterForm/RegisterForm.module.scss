@@ -28,8 +28,8 @@
                 display: flex;
             }
             p {
-                padding-left: .5rem;
-                padding-bottom: 3px;
+                padding-bottom: 8px;
+                padding-top: 8px;
             }
             .coordinateInput {
                 display: flex;
@@ -37,7 +37,7 @@
                 padding-left: .5rem;
                 padding-bottom: 3px;
                 input {
-                    width: 60px;
+                    width: 76px
                 }
             }
             .xy {
@@ -47,10 +47,10 @@
             }
         }
         input {
-            border: 1px solid lightgray;
+            border: none;
+            border-bottom: 1px solid lightgray;
             font-size: .8rem;
             height: 1.5rem;
-            padding-left: .5rem;
             &:focus {
                 outline: none;
             }
@@ -60,6 +60,7 @@
             border: 1px solid lightgray;
             padding: 6px;
             border-radius: var(--borderRadius);
+            margin-top: 6px;
             cursor: pointer;
             &:hover {
                 background-color: lightgray;
