@@ -21,7 +21,7 @@ export async function createClientSchema() {
 
     try{
 
-        console.log(`Creating Client Schema at: ${process.env.POSTGRES_DATABASE}`)
+        console.log(`Creating public Schema at: ${process.env.POSTGRES_DATABASE}`)
         await client.connect()
         let query = await client.query(
         `
@@ -42,11 +42,11 @@ export async function createClientSchema() {
 
         `
         )
-        console.log(`* Client Schema created: ${process.env.POSTGRES_DATABASE} *\n`)
+        console.log(`* public Schema created: ${process.env.POSTGRES_DATABASE} *\n`)
 
     } catch(error) {
 
-        console.log("! ERROR CREATING CLIENT SCHEMA !\n>",error.message,"\n")
+        console.log("! ERROR CREATING public SCHEMA !\n>",error.message,"\n")
         return false
 
     }

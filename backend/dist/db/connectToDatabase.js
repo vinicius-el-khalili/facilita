@@ -7,7 +7,7 @@ import { createClientTable } from './createClientTable.js';
 export async function connectToDatabase() {
     let client;
     configDotenv();
-    // 1. Check postgress connection and authorization
+    // 1. Check PostgreSQL connection and authorization
     client = new Client({
         host: process.env.POSTGRES_HOST,
         port: Number(process.env.POSTGRES_PORT),
@@ -20,7 +20,7 @@ export async function connectToDatabase() {
         console.log("* Connected to PostgreSQL *\n");
     }
     catch (error) {
-        console.log("ERROR CONNECTING TO POSTGRESQL:\n", error.message, "\n");
+        console.log("ERROR CONNECTING TO POSTGRE:\n", error.message, "\n");
         return false;
     }
     // 2. Check database existence
@@ -32,17 +32,28 @@ export async function connectToDatabase() {
         database: process.env.POSTGRES_DATABASE
     });
     try {
+        // 2.1. Connect to database
         console.log("\nConnecting to database...");
         await client.connect();
         console.log(`* Connected to database ${process.env.POSTGRES_DATABASE}\n`);
         return client;
     }
     catch (error) {
-        console.log("! ERROR CONNECTING TO DATABASE !\n>", error.message, "\n");
+        // 2.2. If database is not found, create database
+        console.log(">", error.message, "\n");
         if (error.message == `database "${process.env.POSTGRES_DATABASE}" does not exist`) {
-            await createDatabase();
-            await createClientSchema();
-            await createClientTable();
+            let step = 0;
+            try {
+                await createDatabase();
+                step++;
+                await createClientSchema();
+                step++;
+                await createClientTable();
+                step++;
+            }
+            catch (error) {
+                console.log(`Failed to create ${["database", "public Schema", "Client table"][step]}`);
+            }
         }
         return false;
     }

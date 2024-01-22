@@ -42,11 +42,12 @@ app.get("/", async(req,res)=>{
 
         console.log(error.message)
         res.status(500).json("Query fail")
-        
+
     }
 })
 
 app.post("/add",async(req,res)=>{
+
     try {
 
         if(!client){ res.status(500).json("Database fail"); return }
@@ -60,12 +61,15 @@ app.post("/add",async(req,res)=>{
         res.status(200).json("ok")
 
     } catch(error) {
+
         console.log(error.message)
         res.status(500).json("Query fail")
+
     }
 })
 
 app.delete("/delete/:id",async(req,res)=>{
+
     try {
 
         if(!client){ res.status(500).json("Database fail"); return }
@@ -76,7 +80,9 @@ app.delete("/delete/:id",async(req,res)=>{
         res.status(200).json("ok")
 
     } catch(error) {
+
         res.status(500).json("Query fail")
+        
     }
 })
 

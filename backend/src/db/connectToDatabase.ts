@@ -10,7 +10,7 @@ export async function connectToDatabase(): Promise<false|pkg.Client> {
     let client: pkg.Client
     configDotenv()
     
-    // 1. Check postgress connection and authorization
+    // 1. Check PostgreSQL connection and authorization
     
     client = new Client({
 
@@ -29,7 +29,7 @@ export async function connectToDatabase(): Promise<false|pkg.Client> {
 
     } catch(error) {
 
-        console.log("ERROR CONNECTING TO POSTGRESQL:\n",error.message,"\n")
+        console.log("ERROR CONNECTING TO POSTGRE:\n",error.message,"\n")
         return false
 
     }
@@ -48,6 +48,8 @@ export async function connectToDatabase(): Promise<false|pkg.Client> {
 
     try {
 
+        // 2.1. Connect to database
+
         console.log("\nConnecting to database...")
         await client.connect()
         console.log(`* Connected to database ${process.env.POSTGRES_DATABASE}\n`)
@@ -55,11 +57,26 @@ export async function connectToDatabase(): Promise<false|pkg.Client> {
 
     } catch(error) {
 
-        console.log("! ERROR CONNECTING TO DATABASE !\n>",error.message,"\n")
+        // 2.2. If database is not found, create database
+
+        console.log(">",error.message,"\n")
         if (error.message==`database "${process.env.POSTGRES_DATABASE}" does not exist`){
-            await createDatabase()
-            await createClientSchema()
-            await createClientTable()
+
+            let step = 0
+
+            try {
+
+                await createDatabase(); step++
+                await createClientSchema(); step++
+                await createClientTable(); step++
+
+            }
+
+            catch(error){
+
+                console.log(`Failed to create ${["database","public Schema","Client table"][step]}`)
+            }
+            
         }
         return false
 
