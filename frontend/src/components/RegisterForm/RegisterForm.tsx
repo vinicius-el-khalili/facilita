@@ -70,7 +70,9 @@ const RegisterForm = () => {
                     
                 </div>
 
-                <button type="submit">
+                <button
+                className={style.submitButton}
+                type="submit">
                     Submit
                 </button>
 

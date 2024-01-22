@@ -3,14 +3,15 @@
     border-bottom: none;
     display: grid;
     grid-template-columns: 1fr auto;
-    .registerButtonContainer {
+    .ButtonsContainer {
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 1rem;
-        .registerButton {
+        gap: 6px;
+        .Button {
             box-shadow: var(--boxShadow);
-            padding: 6px;
+            padding: 6px 12px 6px 12px;
             border-radius: var(--borderRadius);
             display: flex;
             align-items: center;
@@ -20,8 +21,9 @@
                 background-color: lightgray;
             }
         }
-        .registerButtonOn {
+        .ButtonOn {
             background-color: gray;
+            color: white;
             &:hover {
                 background-color: gray;
             }
@@ -37,7 +39,7 @@
         justify-content: center;
     }
     .RegisterFormContainerOn {
-        height: 320px;
+        height: 340px;
         transition: .5s;
     }
 }

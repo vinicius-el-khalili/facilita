@@ -1,5 +1,5 @@
 import ClientCard from "../ClientCard/ClientCard";
-import Toolbar from "../Toolbar/Toolbar";
+import Toolbar from '../Toolbar/Toolbar';
 import style from "./ClientList.module.scss"
 
 const ClientList = () => {
