@@ -18,12 +18,12 @@ const { Client } = pkg
 
 const client = new Client({
     host:"localhost",
-    user:"dev",
+    user:"postgres",
     port:5432,
-    password:"123654",
-    database:"clientdb"
+    password:"123",
 })
-client.connect()
+await client.connect()
+
 
 // express app
 const app = express()
@@ -33,6 +33,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // app routes
+
 app.get("/", async(req,res)=>{
     try {
 

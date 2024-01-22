@@ -5,12 +5,11 @@ import { NNMethod } from "./utils/NearestNeighbor/NearestNeighbor.js";
 const { Client } = pkg;
 const client = new Client({
     host: "localhost",
-    user: "dev",
+    user: "postgres",
     port: 5432,
-    password: "123654",
-    database: "clientdb"
+    password: "123",
 });
-client.connect();
+await client.connect();
 // express app
 const app = express();
 // middleware
