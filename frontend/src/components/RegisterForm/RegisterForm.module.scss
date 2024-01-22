@@ -1,3 +1,54 @@
 .RegisterForm {
-    background-color: rebeccapurple;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: fit-content;
+    margin: auto;
+    gap: 1rem;
+    box-shadow: var(--boxShadow);
+    padding: var(--padding);
+    padding-right: calc(var(--padding) * 3);
+    padding-left:  calc(var(--padding) * 3);
+    border-radius: var(--borderRadius);
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        .inputField {
+            p {
+                padding-left: .5rem;
+                padding-bottom: 3px;
+            }
+        }
+        .coordinates {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            .inputs {
+                display: flex;
+            }
+            p {
+                padding-left: .5rem;
+                padding-bottom: 3px;
+            }
+            .coordinateInput {
+                display: flex;
+                gap: 6px;
+                padding-left: .5rem;
+                padding-bottom: 3px;
+                input {
+                    width: 60px;
+                }
+            }
+            .xy {
+                display: flex;
+                align-items: center;
+                font-weight: bolder;
+            }
+        }
+        input {
+            height: 1.5rem;
+            padding-left: .5rem;
+        }
+    }
 }

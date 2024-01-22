@@ -32,9 +32,12 @@
         height: 0;
         transition: .5s;
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .RegisterFormContainerOn {
-        height: 200px;
+        height: 320px;
         transition: .5s;
     }
 }
