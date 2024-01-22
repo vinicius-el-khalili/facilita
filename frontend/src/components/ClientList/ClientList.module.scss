@@ -1,11 +1,19 @@
 .ClientList {
     padding: var(--padding);
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
     h1 {
         padding: var(--padding);
+        text-align: center;
     }
     .list {
+        border: 1px solid lightgray;
         display: flex;
         flex-direction: column;
         gap: var(--gap);
+        overflow-x: hidden;
+        overflow-y: scroll;
+        padding: var(--padding);
     }
 }

@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const ClientCard = () => {
 
-    const [deleteCheck,setDeleteCheck] = useState<boolean>(true)
+    const [deleteCheck,setDeleteCheck] = useState<boolean>(false)
     const handleDeleteButton = () => {
         setDeleteCheck(!deleteCheck)
     }
