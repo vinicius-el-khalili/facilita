@@ -51,28 +51,15 @@ const BruteForce = (
     currentNode: NodeType,
     totalPathDistance: number
 ) => {
-    
-        console.log("\n ---")
-        console.log("visitedNodes:", visitedNodes)
-        console.log("totalPathDistance:", totalPathDistance+graph[currentNode][0])
-        console.log("shortestDistance:", shortestDistance)
 
-    // Condição de saída
+    // Exit condition
     if (visitedNodes.length == graph.length){
 
-        // Voltar à origem e comparar resultados
+        // Return to origin and compare paths
         if ( totalPathDistance+graph[currentNode][0] < shortestDistance){
-
             shortestDistance=totalPathDistance+graph[currentNode][0]
             shortestPath = [...visitedNodes,0]
-
         }
-
-        console.log("************************************SAÍDA")
-        console.log("visitedNodes:", visitedNodes)
-        console.log("totalPathDistance:", totalPathDistance+graph[currentNode][0])
-        console.log("shortestDistance:", shortestDistance)
-
         return 
     }
 

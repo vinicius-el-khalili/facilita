@@ -27,3 +27,8 @@ psql
 - Visualizar usuários:
 
 \du
+
+
+STEPS:
+
+1. Open pgAdmin

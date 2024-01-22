@@ -17,15 +17,22 @@ type clientType = {
 const { Client } = pkg
 
 const client = new Client({
-    host:"localhost",
-    user:"postgres",
+    host:process.env.HOST,
     port:5432,
+    user:"postgres",
     password:"123",
+    database: "test"
 })
-await client.connect()
+try {
+    console.log("Connecting to database...")
+    await client.connect()
+    console.log("* Connected to database *")
+} catch(error) {
+    console.log(error.message)
+}
 
 
-// express app
+// express app 
 const app = express()
 
 // middleware
@@ -45,6 +52,7 @@ app.get("/", async(req,res)=>{
         res.status(200).json(result.rows)
 
     } catch(error) {
+        console.log(error.message)
         res.status(500).json("Query fail")
     }
 })
@@ -110,6 +118,6 @@ app.get("/routes", async (req,res) => {
 // server
 app.listen(3000,()=>{
     
-    console.log("Server is listening at port 3000")
+    console.log("* Server is listening at port 3000 *")
 
 })
