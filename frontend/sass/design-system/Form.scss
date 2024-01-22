@@ -1,0 +1,7 @@
+@mixin Form {
+    background-color: white;
+    color: red;
+    padding: 1rem;
+    box-shadow: var(--default-boxShadow);
+    border-radius: var(--default-borderRadius);
+}

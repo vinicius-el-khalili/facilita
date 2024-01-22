@@ -1,0 +1,5 @@
+@import "../../../sass/design-system/Form.scss";
+
+.Form {
+    @include Form();
+}

@@ -1,0 +1,19 @@
+.ClientCard {
+
+    box-shadow: var(--boxShadow);
+    padding: var(--padding);
+    border-radius: var(--borderRadius);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .attribute {
+        display: flex;
+        gap: var(--gap);
+        align-items: center;
+        .icon,.value {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+}
