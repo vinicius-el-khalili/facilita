@@ -3,16 +3,32 @@
     box-shadow: var(--boxShadow);
     padding: var(--padding);
     border-radius: var(--borderRadius);
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    .attribute {
-        display: flex;
-        gap: var(--gap);
-        align-items: center;
-        .icon,.value {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    .attributes {
+        .attribute {
             display: flex;
+            gap: var(--gap);
             align-items: center;
+            .icon,.value {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+    .deleteButton {
+        $size: 30px;
+        padding: 3px;
+        width: $size;
+        height: $size;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--borderRadius);
+        box-shadow: var(--boxShadow);
+        cursor: pointer;
+        &:hover {
+            background-color: rgb(217, 217, 217);
         }
     }
 

@@ -1,0 +1,11 @@
+.ClientList {
+    padding: var(--padding);
+    h1 {
+        padding: var(--padding);
+    }
+    .list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap);
+    }
+}

@@ -4,10 +4,13 @@ import style from "./ClientList.module.scss"
 const ClientList = () => {
     return (
         <div className={style.ClientList}>
-            <ClientCard/>
-            <ClientCard/>
-            <ClientCard/>
-            <ClientCard/>
+            <h1>Clientes</h1>
+            <div className={style.list}>
+                <ClientCard/>
+                <ClientCard/>
+                <ClientCard/>
+                <ClientCard/>
+            </div>
         </div>
     );
 }
