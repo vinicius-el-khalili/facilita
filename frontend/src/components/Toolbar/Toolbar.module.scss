@@ -21,4 +21,14 @@
             }
         }
     }
+    .RegisterFormContainer {
+        grid-column: span 2;
+        height: 0;
+        transition: .5s;
+        overflow: hidden;
+    }
+    .RegisterFormContainerOn {
+        height: 200px;
+        transition: .5s;
+    }
 }
