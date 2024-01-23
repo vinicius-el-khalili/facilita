@@ -10,7 +10,7 @@ Inicialização (Ubuntu):
 sudo service postgresql start
 ```
 
-Variáveis de ambiente(`@/backend/.env`)
+Variáveis de ambiente `@/backend/.env`
 ```.env
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
