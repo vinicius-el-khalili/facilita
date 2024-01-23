@@ -10,12 +10,13 @@ Inicialização (Ubuntu):
     sudo service postgresql start
 
 Variáveis de ambiente(`@/backend/.env`)
-
-    POSTGRES_HOST=localhost
-    POSTGRES_PORT=5432
-    POSTGRES_USER=postgres
-    POSTGRES_PASSWORD=postgres
-    POSTGRES_DATABASE=clientdb_velkb
+```.env
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DATABASE=clientdb_velkb
+```
 
 * Instalar e inicializar o backend
     * check
