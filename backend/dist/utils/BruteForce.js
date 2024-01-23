@@ -54,6 +54,8 @@ const BruteForce = (graph, visitedNodes, currentNode, totalPathDistance) => {
 };
 export const executeBruteForceMethod = (coordinates) => {
     console.log("Calculating routes via Brute Force...");
+    shortestDistance = Infinity;
+    shortestPath = [];
     let graph = getGraph(coordinates);
     BruteForce(graph, [], 0, 0);
     console.log("Brute force method completed.");
