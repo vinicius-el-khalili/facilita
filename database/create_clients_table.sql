@@ -4,6 +4,7 @@
 
 CREATE TABLE IF NOT EXISTS public.clients
 (
+    id serial PRIMARY KEY,
     nome name COLLATE pg_catalog."default" NOT NULL,
     email text COLLATE pg_catalog."default" NOT NULL,
     telefone text COLLATE pg_catalog."default" NOT NULL,
