@@ -26,14 +26,14 @@ Os arquivos .sql contendo os scripts e DDLs utilizados na criação da base de d
 
 # 2. Backend (Node.js)
 
-2.1. Para inicializar o servidor Node.js, primeiro instale as depêndencias presentes em `@/backend/package.json`
+2.1. Instale as dependências:
 
 #### @/backend/
 
 ```bash
 npm install
 ```
-2.2. A seguir, inicie o servidor com o comando
+2.2. Inicialize o servidor:
 
 #### @/backend/
 
@@ -56,5 +56,14 @@ tsc --watch
 
 # 3. Frontend (React.js)
 
-Para inicializar o frontend, basta 
+3.1. Instale as depêndencias:
 
+```bash
+npm install
+```
+
+3.2. Inicialize o servidor:
+
+```bash
+npm run dev
+```
