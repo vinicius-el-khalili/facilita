@@ -3,7 +3,7 @@
 
 # 1. PostgreSQL
 
-Para a base de dados PostgreSQL, tudo o que você precisa fazer é inicializar o PostgreSQL em sua máquina local e transferir suas configurações de acesso para as variáveis de ambiente em `@/backend/.env`. 
+Para a base de dados PostgreSQL, basta inicializar o PostgreSQL em sua máquina local e transferir suas configurações de acesso para as variáveis de ambiente em `@/backend/.env`. 
 
 Inicialização (Ubuntu):
 ```terminal
@@ -21,13 +21,12 @@ POSTGRES_DATABASE=clientdb_velkb
 
 Nas variáveis de ambiente atuais, os atributos HOST, PORT, USER e PASSWORD estão configurados segundo os valores padrão do PostgreSQL. 
 Todas as manipulações na base de dados (conexão com o PostgreSQL, criação da base de dados, schemas e tabelas) serão realizadas pelo servidor Node.
-Os arquivos .sql contendo os DDLs utilizadas na criaçao da base de dados, schemas e tabelas estão disponíveis em `@/database`.
+Os arquivos .sql contendo os scripts e DDLs utilizados na criação da base de dados, schemas e tabelas estão disponíveis em `@/database`.
 
 
-* Instalar e inicializar o backend
-    * check
-    * check
+# Backend (Node.js)
 
-* Instalar e inicializar o front end
-    * check
-    * check
+Para inicializar o servidor Node.js, primeiro instale as depêndencias presentes em `@/backend/package.json`
+
+
+
