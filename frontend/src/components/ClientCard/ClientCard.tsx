@@ -4,8 +4,11 @@ import { MdOutlineMail } from "react-icons/md";
 import { LuMapPin, LuPhone } from "react-icons/lu";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { useState } from "react";
+import { ClientType } from "../../types/types";
 
-const ClientCard = () => {
+const ClientCard = ({client}:{
+    client: ClientType
+}) => {
 
     const [deleteCheck,setDeleteCheck] = useState<boolean>(false)
     const handleDeleteButton = () => {
@@ -18,22 +21,22 @@ const ClientCard = () => {
 
                 <div className={style.attribute}>
                     <div className={style.icon}><FaUser/></div>
-                    <div className={style.value}>John Wick</div>
+                    <div className={style.value}>{client.nome}</div>
                 </div>
 
                 <div className={style.attribute}>
                     <div className={style.icon}><MdOutlineMail/></div>
-                    <div className={style.value}>johnwick@gmail.com</div>
+                    <div className={style.value}>{client.email}</div>
                 </div>
 
                 <div className={style.attribute}>
                     <div className={style.icon}><LuPhone/></div>
-                    <div className={style.value}>0123456789</div>
+                    <div className={style.value}>{client.telefone}</div>
                 </div>
 
                 <div className={style.attribute}>
                     <div className={style.icon}><LuMapPin/></div>
-                    <div className={style.value}>(12.4, 17.8)</div>
+                    <div className={style.value}>{`x: ${client.x}, y:${client.y}`}</div>
                 </div>
 
             </div>
