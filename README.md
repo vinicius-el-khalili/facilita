@@ -6,8 +6,9 @@
 Para a base de dados PostgreSQL, tudo o que você precisa fazer é inicializar o PostgreSQL em sua máquina local e transferir suas configurações e credenciais para as variáveis de ambiente em `@/backend/.env`. 
 
 Inicialização (Ubuntu):
-
-    sudo service postgresql start
+```terminal
+sudo service postgresql start
+```
 
 Variáveis de ambiente(`@/backend/.env`)
 ```.env
