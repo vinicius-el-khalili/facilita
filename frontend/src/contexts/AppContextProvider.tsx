@@ -58,16 +58,16 @@ const AppContextProvider = ({children}:{children: ReactNode}) => {
         let filteredClients: ClientType[]
         switch (option){
             case "Nome":
-                filteredClients = clients.filter(client => client.nome.includes(str))
+                filteredClients = clientsBackup.filter(client => client.nome.includes(str))
                 break
             case "Email":
-                filteredClients = clients.filter(client => client.email.includes(str))
+                filteredClients = clientsBackup.filter(client => client.email.includes(str))
                 break
             case "Telefone":
-                filteredClients = clients.filter(client => client.telefone.includes(str))
+                filteredClients = clientsBackup.filter(client => client.telefone.includes(str))
                 break
             case "Todos":
-                filteredClients = clients.filter(client => 
+                filteredClients = clientsBackup.filter(client => 
                     client.nome.includes(str)||client.email.includes(str)||client.telefone.includes(str)
                 )
                 break
@@ -75,7 +75,6 @@ const AppContextProvider = ({children}:{children: ReactNode}) => {
                 break
         }
         if (!filteredClients) { return }
-        setClientsBackup(clients)
         setClients(filteredClients)
 
     }
