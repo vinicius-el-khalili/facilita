@@ -2,13 +2,13 @@ import { createContext } from "react";
 
 type AppContextTypes = {
     state: {
-        msg: string
+        clients: any[]|null
     },
 }
 
 const DEFAULT_VALUE: AppContextTypes = {
     state: {
-        msg: "context!"
+        clients: null
     }
 }
 

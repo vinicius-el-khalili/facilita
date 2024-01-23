@@ -2,10 +2,12 @@ import bodyParser from "body-parser";
 import express from "express";
 import { NNMethod } from "./utils/NearestNeighbor/NearestNeighbor.js";
 import { connectToDatabase } from "./db/connectToDatabase.js";
+import cors from 'cors';
 let client = await connectToDatabase();
 // express app 
 const app = express();
 // middleware
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // app routes

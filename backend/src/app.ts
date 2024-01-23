@@ -3,6 +3,7 @@ import express from "express";
 import pkg from 'pg';
 import { NNMethod } from "./utils/NearestNeighbor/NearestNeighbor.js";
 import { connectToDatabase } from "./db/connectToDatabase.js";
+import cors from 'cors';
 
 type clientType = {
 
@@ -22,6 +23,7 @@ let client = await connectToDatabase()
 const app = express()
 
 // middleware
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 

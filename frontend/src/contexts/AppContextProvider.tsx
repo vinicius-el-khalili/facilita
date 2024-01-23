@@ -1,13 +1,23 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import AppContext from "./AppContext";
+import { getClients } from "../services/getClients";
 
 const AppContextProvider = ({children}:{children: ReactNode}) => {
 
-    const msg = "hello!"
+    const clients = null
+
+    useEffect(()=>{
+        ;(async()=>{
+
+            let _clients = await getClients()
+            console.log(_clients)
+
+        })();
+    },[])
 
     return <AppContext.Provider value={{
         state: {
-            msg
+            clients
         }
     }}>
         {children}

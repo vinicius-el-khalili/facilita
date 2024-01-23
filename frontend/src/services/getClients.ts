@@ -4,13 +4,22 @@ export const getClients = async () => {
     try {
 
         let url = import.meta.env.VITE_REACT_NODE_SERVER_URL
-        let response = await fetch(url, {
-            method: "GET"
+
+        let headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        }
+
+        let response = await fetch(`${url}`, {
+            method: "GET",
+            headers
         })
+
+        console.log(response)
 
         if (!response) {
             return false
-        } 
+        }
 
         let data: any
         switch(response.status){
