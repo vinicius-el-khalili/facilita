@@ -1,10 +1,12 @@
 import { Dispatch, SetStateAction, createContext } from "react";
-import { ClientType, CreateClientParameters } from "../types/types";
+import { ClientRoutes, ClientType, CreateClientParameters } from "../types/types";
 
 type AppContextTypes = {
     state: {
         clients: ClientType[]|null
         setClients: Dispatch<SetStateAction<ClientType[]|null>>
+        clientRoutes: ClientRoutes|null
+        setClientRoutes: Dispatch<SetStateAction<ClientRoutes|null>>
     }
     services: {
         getClients: () => void
@@ -20,7 +22,9 @@ type AppContextTypes = {
 const DEFAULT_VALUE: AppContextTypes = {
     state: {
         clients: null,
-        setClients: ()=>{}
+        setClients: ()=>{},
+        clientRoutes: null,
+        setClientRoutes: ()=>{}
     },
     services: {
         getClients: () => {},

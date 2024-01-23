@@ -1,14 +1,17 @@
 import { ReactNode, useEffect, useState } from "react";
 import AppContext from "./AppContext";
-import { ClientType, CreateClientParameters } from "../types/types";
+import { ClientRoutes, ClientType, CreateClientParameters } from "../types/types";
 import { getClients } from "../services/getClients";
 import { createClient } from "../services/createClient";
 import { deleteClient } from "../services/deleteClient";
+import { getRoutes } from "../services/getRoutes";
 
 const AppContextProvider = ({children}:{children: ReactNode}) => {
 
     const [clients,setClients] = useState<ClientType[]|null>(null)
     const [clientsBackup,setClientsBackup] = useState<ClientType[]|null>(null)
+
+    const [clientRoutes,setClientRoutes] = useState<ClientRoutes|null>(null)
 
     const _getClients = async () => {
 
@@ -47,7 +50,14 @@ const AppContextProvider = ({children}:{children: ReactNode}) => {
 
     }
 
-    const _calculateRoutes = () => {}
+
+    const _calculateRoutes = async () => {
+
+        let _clientRoutes = await getRoutes()
+        if (!_clientRoutes){ return }
+        setClientRoutes(_clientRoutes)
+
+    }
 
     const filterClients = (str: string, option:string) => {
 
@@ -89,7 +99,8 @@ const AppContextProvider = ({children}:{children: ReactNode}) => {
 
     return <AppContext.Provider value={{
         state: {
-            clients, setClients
+            clients, setClients,
+            clientRoutes,setClientRoutes
         },
         services: {
             getClients: _getClients,

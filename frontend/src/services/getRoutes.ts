@@ -1,6 +1,6 @@
-import { ClientType } from "../types/types"
+import { ClientRoutes, ClientType } from "../types/types"
 
-export const Routes = async () => {
+export const getRoutes = async () => {
 
     try {
 
@@ -20,10 +20,7 @@ export const Routes = async () => {
             return false
         }
 
-        let data: {
-            clientPath: ClientType[],
-            shortestDistance: number
-        }
+        let data: ClientRoutes
         switch(response.status){
             case 200:
                 console.log(`@getClients: success`)

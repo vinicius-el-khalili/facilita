@@ -14,3 +14,8 @@ export type CreateClientParameters = {
     x: number,
     y: number
 }
+
+export type ClientRoutes = {
+    clientPath: ClientType[]
+    shortestDistance: number
+}
