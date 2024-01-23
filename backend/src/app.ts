@@ -108,7 +108,7 @@ app.get("/routes", async (req,res) => {
         const coordinates = clients.map(({ x, y }) => ({ x:Number(x), y:Number(y) }))
         const { shortestPath, shortestDistance } = executeBruteForceMethod(coordinates)
         
-        let clientPath = []
+        let clientPath: ClientType[] = []
         for (let i=0; i< shortestPath.length; i++){
             clientPath.push(clients[shortestPath[i]])
         }
