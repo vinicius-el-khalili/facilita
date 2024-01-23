@@ -1,23 +1,30 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useState } from "react";
 import AppContext from "./AppContext";
-import { getClients } from "../services/getClients";
+import { ClientType } from "../types/types";
 
 const AppContextProvider = ({children}:{children: ReactNode}) => {
 
-    const clients = null
+    const [clients,setClients] = useState<ClientType[]|null>(null)
 
-    useEffect(()=>{
-        ;(async()=>{
+    const getClients = () => {}
+    const createClient = () => {}
+    const deleteClient = () => {}
+    const calculateRoutes = () => {}
 
-            let _clients = await getClients()
-            console.log(_clients)
-
-        })();
-    },[])
+    const filterClients = () => {}
 
     return <AppContext.Provider value={{
         state: {
-            clients
+            clients, setClients
+        },
+        services: {
+            getClients,
+            createClient,
+            deleteClient,
+            calculateRoutes,
+        },
+        actions: {
+            filterClients
         }
     }}>
         {children}
