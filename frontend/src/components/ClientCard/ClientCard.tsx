@@ -3,18 +3,17 @@ import style from "./ClientCard.module.scss"
 import { MdOutlineMail } from "react-icons/md";
 import { LuMapPin, LuPhone } from "react-icons/lu";
 import { FaRegTrashCan } from "react-icons/fa6";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ClientType } from "../../types/types";
+import AppContext from "../../contexts/AppContext";
 
 const ClientCard = ({client}:{
     client: ClientType
 }) => {
 
+    const context = useContext(AppContext)
     const [deleteCheck,setDeleteCheck] = useState<boolean>(false)
-    const handleDeleteButton = () => {
-        setDeleteCheck(!deleteCheck)
-    }
-
+    
     return (
         <div className={style.ClientCard}>
             <div className={style.attributes}>
@@ -42,7 +41,7 @@ const ClientCard = ({client}:{
             </div>
             <div
             className={style.deleteButton}
-            onClick={handleDeleteButton}
+            onClick={()=>{setDeleteCheck(!deleteCheck)}}
             style={deleteCheck?{backgroundColor:"var(--red)"}:{}}
             >
                 <FaRegTrashCan/>
@@ -52,7 +51,7 @@ const ClientCard = ({client}:{
             <div className={style.deleteCheckBox}>
                 <p>Deletar usuário?</p>
                 <div className={style.buttons}>
-                    <div className={style.button}>Sim</div>
+                    <div className={style.button} onClick={()=>{ context.services.deleteClient(client.id) }}>Sim</div>
                     <div className={style.button}>Não</div>
                 </div>
             </div>
