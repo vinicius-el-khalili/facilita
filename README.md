@@ -41,5 +41,4 @@ A seguir, inicie o servidor com o comando
 npm run server
 ```
 
-![Alt Text](/readme_images/npm_run_server.png)
-
+<img src="/readme_images/npm_run_server.png" alt="Alt Text" width="300">
