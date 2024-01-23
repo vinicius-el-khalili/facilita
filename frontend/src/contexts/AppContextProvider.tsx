@@ -56,6 +56,7 @@ const AppContextProvider = ({children}:{children: ReactNode}) => {
         let _clientRoutes = await getRoutes()
         if (!_clientRoutes){ return }
         setClientRoutes(_clientRoutes)
+        console.log(_clientRoutes)
 
     }
 
