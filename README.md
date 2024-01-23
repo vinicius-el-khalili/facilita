@@ -24,12 +24,13 @@ Todas as manipulações na base de dados (conexão com o PostgreSQL, criação d
 Os arquivos .sql contendo os scripts e DDLs utilizados na criação da base de dados, schemas e tabelas estão disponíveis em `@/database`.
 
 
-# Backend (Node.js)
+# 2. Backend (Node.js)
 
 Para inicializar o servidor Node.js, primeiro instale as depêndencias presentes em `@/backend/package.json`
 
+- @/backend/
+
 ```terminal
-// @/backend/
 npm install
 ```
 
