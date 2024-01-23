@@ -4,6 +4,8 @@ Para rodar o projeto localmente, você vai precisar realizar os seguintes passos
 
 # 1. Inicializar o PostgreSQL
 
+Para a inicialização da base de dados PostgreSQL, tudo o que você precisa fazer é inicializar o PostgreSQL em sua máquina local. 
+
 Ubuntu:
 
     sudo service postgresql start
