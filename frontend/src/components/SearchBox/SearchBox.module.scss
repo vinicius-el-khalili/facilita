@@ -2,6 +2,14 @@
     display: flex;
     padding: var(--padding);
     align-items: center;
+    @media screen and (max-width:400px) {
+        display: grid;
+        grid-template-columns: 1.2rem auto auto;
+        select {
+            grid-column: span 3;
+            margin-top: 6px;
+        }
+    }
     .icon {
         display: flex;
         align-items: center;
