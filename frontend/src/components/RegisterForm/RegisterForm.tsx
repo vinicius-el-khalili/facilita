@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import style from "./RegisterForm.module.scss"
+import AppContext from "../../contexts/AppContext";
 const RegisterForm = () => {
+
+    const context = useContext(AppContext)
 
     const [name,setName] = useState<string|null>(null)
     const [email,setEmail] = useState<string|null>(null)
@@ -8,7 +11,19 @@ const RegisterForm = () => {
     const [x,setX] = useState<number|null>(null)
     const [y,setY] = useState<number|null>(null)
 
-    const handleSubmit = () => {}
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
+        event.preventDefault()
+        console.log({name,email,phone,x,y})
+        context.services.createClient({
+            nome: name,
+            email: email,
+            telefone: phone,
+            x,
+            y
+        })
+
+    }
 
     return (
         <div className={style.RegisterForm}>
@@ -39,7 +54,7 @@ const RegisterForm = () => {
 
                 <div className={style.inputField}>
                     <input
-                    type="text"
+                    type="number"
                     placeholder="Telefone"
                     value={phone?phone:""}
                     onChange={(e)=>{setPhone(e.target.value)}}

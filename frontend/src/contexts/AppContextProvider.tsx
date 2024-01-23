@@ -28,14 +28,22 @@ const AppContextProvider = ({children}:{children: ReactNode}) => {
             client.y,
         )
         if (!_create){ return }
-        await getClients()
+        let _clients = await getClients()
+        if (!_clients){ return }
+        setClients(_clients)
+        setClientsBackup(_clients)
+
 
     }
     const _deleteClient = async (id: number) => {
 
         let _delete = await deleteClient(id)
         if (!_delete){ return }
-        await getClients()
+        let _clients = await getClients()
+        if (!_clients){ return }
+        setClients(_clients)
+        setClientsBackup(_clients)
+
 
     }
 
