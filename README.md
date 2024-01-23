@@ -2,8 +2,13 @@
 
 Para rodar o projeto localmente, você vai precisar realizar os seguintes passos:
 * Inicializar o PostgreSQL
-    * check
-    * check
+
+Ubuntu:
+
+    * sudo service postgresql start
+    * ps aux | grep postgres
+
+
 * Instalar e inicializar o backend
     * check
     * check
