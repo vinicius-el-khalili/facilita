@@ -43,7 +43,7 @@ npm run server
 
 O resultado deve ser igual à imagem abaixo:
 
-<img src="images/example.png" alt="Example Image" width="200">
+<img src="/readme_images/npm_run_server.png" alt="Example Image" width="200">
 
 
 Se desejar acessar o servidor em um ambiente de desenvolvimento, inclua o seguinte comando em outro terminal para realizar a compilação contínua dos arquivos TypeScript:
