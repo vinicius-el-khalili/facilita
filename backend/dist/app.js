@@ -1,8 +1,8 @@
 import bodyParser from "body-parser";
 import express from "express";
-import { NNMethod } from "./utils/NearestNeighbor/NearestNeighbor.js";
 import { connectToDatabase } from "./db/connectToDatabase.js";
 import cors from 'cors';
+import { executeBruteForceMethod } from "./utils/BruteForce.js";
 let client = await connectToDatabase();
 // express app 
 const app = express();
@@ -17,7 +17,8 @@ app.get("/", async (req, res) => {
             return;
         }
         const result = await client.query("SELECT * FROM clients");
-        res.status(200).json(result.rows);
+        let clients = result.rows;
+        res.status(200).json(clients);
     }
     catch (error) {
         console.log(error.message);
@@ -59,13 +60,23 @@ app.get("/routes", async (req, res) => {
             res.status(500).json("Database fail");
             return;
         }
-        const result = await client.query("SELECT client, x, y FROM clients");
-        const rows = result.rows;
-        const nodes = rows.map((row) => ({ x: Number(row.x), y: Number(row.y) }));
-        const path = NNMethod(nodes);
-        res.status(200).json(path);
+        // Query clients
+        const result = await client.query("SELECT * FROM clients");
+        let clients = result.rows;
+        // Add origin
+        clients.unshift({ id: -1, x: "0", y: "0", nome: "Origem", email: "", telefone: "" });
+        // 
+        const coordinates = clients.map(({ x, y }) => ({ x: Number(x), y: Number(y) }));
+        const { shortestPath, shortestDistance } = executeBruteForceMethod(coordinates);
+        let clientPath = [];
+        for (let i = 0; i < shortestPath.length; i++) {
+            clientPath.push(clients[shortestPath[i]]);
+        }
+        console.log(clientPath);
+        res.status(200).json({ clientPath, shortestDistance });
     }
     catch (error) {
+        console.log(error.message);
         res.status(500).json("Query fail");
     }
 });

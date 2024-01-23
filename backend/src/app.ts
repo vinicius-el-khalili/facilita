@@ -4,16 +4,16 @@ import pkg from 'pg';
 import { NNMethod } from "./utils/NearestNeighbor/NearestNeighbor.js";
 import { connectToDatabase } from "./db/connectToDatabase.js";
 import cors from 'cors';
+import { executeBruteForceMethod } from "./utils/BruteForce.js";
 
-type clientType = {
 
-    "id": string
-    "nome": string
-    "email": string
-    "telefone": string
-    "x": string
-    "y": string
-
+type ClientType = {
+    id: number,
+    nome: string,
+    email: string,
+    telefone: string,
+    x: string,
+    y: string
 }
 
 let client = await connectToDatabase()
@@ -34,11 +34,11 @@ app.get("/", async(req,res)=>{
 
         if(!client){ return }
         const result = 
-        await client.query<clientType>(
+        await client.query<ClientType>(
         "SELECT * FROM clients"
         )
-
-        res.status(200).json(result.rows)
+        let clients = result.rows
+        res.status(200).json(clients)
 
     } catch(error) {
 
@@ -92,22 +92,32 @@ app.get("/routes", async (req,res) => {
 
     try {
 
-        if(!client){ res.status(500).json("Database fail"); return }
-        const result = await client.query<{
-            id: string,
-            x: string,
-            y: string
-        }>(
-        "SELECT client, x, y FROM clients"
-        )
 
-        const rows = result.rows
-        const nodes = rows.map( (row)=>({ x: Number(row.x), y: Number(row.y) }) )
-        const path = NNMethod(nodes)
+        if(!client){ res.status(500).json("Database fail"); return }
+
+        // Query clients
+        const result = await client.query<ClientType>(
+        "SELECT * FROM clients"
+        )
+        let clients = result.rows
+
+        // Add origin
+        clients.unshift({id:-1,x:"0",y:"0",nome:"Origem",email:"",telefone:""})
+
+        // 
+        const coordinates = clients.map(({ x, y }) => ({ x:Number(x), y:Number(y) }))
+        const { shortestPath, shortestDistance } = executeBruteForceMethod(coordinates)
         
-        res.status(200).json(path)
+        let clientPath = []
+        for (let i=0; i< shortestPath.length; i++){
+            clientPath.push(clients[shortestPath[i]])
+        }
+
+        console.log(clientPath)
+        res.status(200).json({clientPath,shortestDistance})
 
     } catch(error) {
+        console.log(error.message)
         res.status(500).json("Query fail")
     }
 

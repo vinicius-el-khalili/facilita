@@ -1,5 +1,4 @@
 const getDistance = (coordinates1, coordinates2) => {
-    console.log(coordinates1, coordinates2);
     return Math.sqrt((coordinates1.x - coordinates2.x) ** 2 +
         (coordinates1.y - coordinates2.y) ** 2);
 };
@@ -53,23 +52,25 @@ const BruteForce = (graph, visitedNodes, currentNode, totalPathDistance) => {
         }
     }
 };
-const coordinates = [
-    { x: 0, y: 0 },
-    { x: 0, y: 1 },
-    { x: 1, y: 1 },
-    { x: 1, y: 0 },
-    { x: 2, y: 0 },
-    { x: 0, y: 2 },
-    { x: 2, y: 2 },
-];
-let graph = getGraph(coordinates);
-let g = [
-    [0, 99, 99, 13],
-    [99, 0, 99, 13],
-    [99, 99, 0, 13],
-    [13, 13, 13, 0],
-];
-BruteForce(g, [], 0, 0);
-console.log({ shortestPath, shortestDistance });
-export {};
+export const executeBruteForceMethod = (coordinates) => {
+    console.log("Calculating routes via Brute Force...");
+    let graph = getGraph(coordinates);
+    BruteForce(graph, [], 0, 0);
+    console.log("Brute force method completed.");
+    return { shortestPath, shortestDistance };
+};
+// test
+// let g = [
+//     [0,99,99,13],
+//     [99,0,99,13],
+//     [99,99,0,13],
+//     [13,13,13,0],
+// ]
+// BruteForce(
+//     g,
+//     [],
+//     0,
+//     0
+// )
+// console.log({shortestPath,shortestDistance})
 //# sourceMappingURL=BruteForce.js.map

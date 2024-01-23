@@ -10,7 +10,7 @@ function getNearestNeighbor(graph, currentKey, visitedKeys) {
     let minimumDistance = Infinity;
     let nearestNode = null;
     let currentNode = graph[currentKey];
-    console.log("--", currentKey);
+    //console.log("--",currentKey)
     for (const [key, node] of Object.entries(graph)) {
         if (key == currentKey || visitedKeys.includes(key)) {
             continue;
@@ -20,7 +20,7 @@ function getNearestNeighbor(graph, currentKey, visitedKeys) {
             minimumDistance = distance;
             nearestNode = key;
         }
-        console.log({ currentKey, key, distance, minimumDistance, nearestNode });
+        //console.log({currentKey,key,distance,minimumDistance,nearestNode})
     }
     return nearestNode;
 }
@@ -34,6 +34,7 @@ export function NNMethod(nodes) {
         visitedKeys.push(currentKey);
         currentKey = nextKey;
     }
+    console.log(visitedKeys.map(Number));
     return visitedKeys.map(Number);
 }
 //# sourceMappingURL=NearestNeighbor.js.map

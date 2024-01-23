@@ -32,7 +32,7 @@ function getNearestNeighbor (
     let nearestNode:nodeKey|null = null
     let currentNode:nodeType = graph[currentKey]
 
-    console.log("--",currentKey)
+    //console.log("--",currentKey)
     for ( const [key,node] of Object.entries(graph) ){
 
         if( key==currentKey || visitedKeys.includes(key) ){
@@ -43,7 +43,7 @@ function getNearestNeighbor (
             minimumDistance = distance
             nearestNode = key
         }
-        console.log({currentKey,key,distance,minimumDistance,nearestNode})
+        //console.log({currentKey,key,distance,minimumDistance,nearestNode})
     }
 
     return nearestNode
@@ -65,6 +65,7 @@ export function NNMethod (
         currentKey = nextKey
     }
 
+    console.log(visitedKeys.map(Number))
     return visitedKeys.map(Number)
 
 }
