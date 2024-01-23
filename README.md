@@ -28,5 +28,10 @@ Os arquivos .sql contendo os scripts e DDLs utilizados na criação da base de d
 
 Para inicializar o servidor Node.js, primeiro instale as depêndencias presentes em `@/backend/package.json`
 
+```terminal
+// @/backend/
+npm install
+```
+
 
 
