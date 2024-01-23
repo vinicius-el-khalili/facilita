@@ -7,7 +7,7 @@ const SearchBox = () => {
 
     const context = useContext(AppContext)
 
-    const [searchValue,setSearchValue] = useState<string|null>(null)
+    const [searchValue,setSearchValue] = useState<string>("")
     const [searchFilter,setSearchFilter] = useState<string>("Todos")
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +25,10 @@ const SearchBox = () => {
     }
 
     const handleClearButton = () => {
-        setSearchValue(null)
+
+        setSearchValue("")
+        context.actions.filterClients("",searchValue)
+        
     }
 
     return (

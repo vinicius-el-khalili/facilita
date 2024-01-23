@@ -5,9 +5,10 @@
     grid-template-columns: 1fr auto;
     @media screen and (max-width:720px) {
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        height: fit-content;
     }
     .ButtonsContainer {
         display: flex;
@@ -15,9 +16,6 @@
         justify-content: center;
         padding: 1rem;
         gap: 6px;
-        @media screen and (max-width:720px) {
-            padding-bottom: 0;
-        }
         .Button {
             box-shadow: var(--boxShadow);
             padding: 6px 12px 6px 12px;
