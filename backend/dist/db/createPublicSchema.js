@@ -1,30 +1,20 @@
 import pkg from 'pg';
 import { configDotenv } from 'dotenv';
-import { createClientIdSequence } from './createClientIdSequence.js';
-
-const { Client } = pkg
-
-export async function createClientSchema() {
-    
-    configDotenv()
-    let client: pkg.Client
-
+const { Client } = pkg;
+export async function createPublicSchema() {
+    configDotenv();
+    let client;
     client = new Client({
-
         host: process.env.POSTGRES_HOST,
         port: Number(process.env.POSTGRES_PORT),
         user: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DATABASE
-
-    })
-
-    try{
-
-        console.log(`Creating public Schema at: ${process.env.POSTGRES_DATABASE}`)
-        await client.connect()
-        let query = await client.query(
-        `
+    });
+    try {
+        console.log(`Creating public Schema at: ${process.env.POSTGRES_DATABASE}`);
+        await client.connect();
+        let query = await client.query(`
 
         -- SCHEMA: public
 
@@ -40,15 +30,12 @@ export async function createClientSchema() {
         
         GRANT ALL ON SCHEMA public TO pg_database_owner;
 
-        `
-        )
-        console.log(`* public Schema created: ${process.env.POSTGRES_DATABASE} *\n`)
-
-    } catch(error) {
-
-        console.log("! ERROR CREATING public SCHEMA !\n>",error.message,"\n")
-        return false
-
+        `);
+        console.log(`* public Schema created: ${process.env.POSTGRES_DATABASE} *\n`);
     }
-
+    catch (error) {
+        console.log("! ERROR CREATING public SCHEMA !\n>", error.message, "\n");
+        return false;
+    }
 }
+//# sourceMappingURL=createPublicSchema.js.map

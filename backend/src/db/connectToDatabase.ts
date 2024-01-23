@@ -2,7 +2,7 @@ import pkg from 'pg';
 const { Client } = pkg
 import { configDotenv } from 'dotenv';
 import { createDatabase } from './createDatabase.js';
-import { createClientSchema } from './createClientSchema.js';
+import { createPublicSchema } from './createPublicSchema.js';
 import { createClientTable } from './createClientTable.js';
 
 export async function connectToDatabase(): Promise<false|pkg.Client> {
@@ -29,7 +29,7 @@ export async function connectToDatabase(): Promise<false|pkg.Client> {
 
     } catch(error) {
 
-        console.log("ERROR CONNECTING TO POSTGRE:\n",error.message,"\n")
+        console.log("ERROR CONNECTING TO POSTGRESQL:\n",error.message,"\n")
         return false
 
     }
@@ -67,8 +67,9 @@ export async function connectToDatabase(): Promise<false|pkg.Client> {
             try {
 
                 await createDatabase(); step++
-                await createClientSchema(); step++
+                await createPublicSchema(); step++
                 await createClientTable(); step++
+                let client = await connectToDatabase()
 
             }
 

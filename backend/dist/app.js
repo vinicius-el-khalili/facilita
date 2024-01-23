@@ -1,9 +1,19 @@
 import bodyParser from "body-parser";
 import express from "express";
+import pkg from 'pg';
 import { connectToDatabase } from "./db/connectToDatabase.js";
 import cors from 'cors';
 import { executeBruteForceMethod } from "./utils/BruteForce.js";
-let client = await connectToDatabase();
+const { Client } = pkg;
+await connectToDatabase();
+let client = new Client({
+    host: process.env.POSTGRES_HOST,
+    port: Number(process.env.POSTGRES_PORT),
+    user: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE
+});
+client.connect();
 // express app 
 const app = express();
 // middleware
@@ -33,7 +43,6 @@ app.post("/add", async (req, res) => {
         }
         const { nome, email, telefone, x, y } = req.body;
         const result = await client.query("INSERT INTO clients(nome,email,telefone,x,y) VALUES($1, $2, $3, $4, $5)", [nome, email, telefone, x, y]);
-        console.log(result);
         res.status(200).json("ok");
     }
     catch (error) {
@@ -72,7 +81,6 @@ app.get("/routes", async (req, res) => {
         for (let i = 0; i < shortestPath.length; i++) {
             clientPath.push(clients[shortestPath[i]]);
         }
-        console.log(clientPath);
         res.status(200).json({ clientPath, shortestDistance });
     }
     catch (error) {

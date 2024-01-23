@@ -1,6 +1,5 @@
 import pkg from 'pg';
 import { configDotenv } from 'dotenv';
-import { createClientSchema } from './createClientSchema.js';
 
 const { Client } = pkg
 

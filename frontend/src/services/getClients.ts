@@ -5,12 +5,12 @@ export const getClients = async () => {
     try {
 
         let url = import.meta.env.VITE_REACT_NODE_SERVER_URL
-
+        
         let headers = {
             "Accept": "application/json",
             "Content-Type": "application/json",
         }
-
+        
         let response = await fetch(`${url}`, {
             method: "GET",
             headers
