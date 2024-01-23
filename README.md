@@ -21,7 +21,7 @@ POSTGRES_DATABASE=clientdb_velkb
 
 Nas variáveis de ambiente atuais, os atributos HOST, PORT, USER e PASSWORD estão configurados segundo os valores padrão do PostgreSQL. 
 Todas as manipulações na base de dados (conexão com o PostgreSQL, criação da base de dados, schemas e tabelas) serão realizadas pelo servidor Node.
-Os arquivos .sql contendo as DDLs utilizadas estão disponíveis na pasta `@/database`
+Os arquivos .sql contendo os DDLs utilizadas na criaçao da base de dados, schemas e tabelas estão disponíveis em `@/database`.
 
 
 * Instalar e inicializar o backend
