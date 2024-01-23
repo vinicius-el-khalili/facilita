@@ -6,7 +6,7 @@
 Para a base de dados PostgreSQL, basta inicializar o PostgreSQL em sua máquina local e transferir suas configurações de acesso para as variáveis de ambiente em `@/backend/.env`. 
 
 Inicialização (Ubuntu):
-```terminal
+```
 sudo service postgresql start
 ```
 
@@ -33,6 +33,12 @@ Para inicializar o servidor Node.js, primeiro instale as depêndencias presentes
 ```terminal
 npm install
 ```
+A seguir, inicie o servidor com o comando
 
+#### @/backend/
+
+```terminal
+npm run server
+```
 
 

@@ -8,7 +8,7 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc --watch",
-    "node": "nodemon dist/app.js"
+    "server": "nodemon dist/app.js"
   },
   "author": "Vinicius El Khalili",
   "license": "ISC",
