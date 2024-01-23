@@ -36,7 +36,6 @@ npm install
 2.2. Inicialize o servidor:
 
 #### @/backend/
-
 ```bash
 npm run server
 ```
@@ -48,8 +47,7 @@ O resultado deve ser igual à imagem abaixo:
 
 Se desejar acessar o servidor em um ambiente de desenvolvimento, inclua o seguinte comando em outro terminal para realizar a compilação contínua dos arquivos TypeScript:
 
-#### @/backend/
-
+#### @/backend
 ```bash
 tsc --watch
 ```
@@ -58,12 +56,14 @@ tsc --watch
 
 3.1. Instale as depêndencias:
 
+#### @/frontend
 ```bash
 npm install
 ```
 
 3.2. Inicialize o servidor:
 
+#### @/frontend
 ```bash
 npm run dev
 ```
