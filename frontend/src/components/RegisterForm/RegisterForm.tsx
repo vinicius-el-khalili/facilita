@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import style from "./RegisterForm.module.scss"
 import AppContext from "../../contexts/AppContext";
 const RegisterForm = () => {
@@ -24,6 +24,16 @@ const RegisterForm = () => {
         })
 
     }
+
+    useEffect(()=>{
+
+        setName(null)
+        setEmail(null)
+        setPhone(null)
+        setX(null)
+        setY(null)
+
+    },[context.state.clients])
 
     return (
         <div className={style.RegisterForm}>

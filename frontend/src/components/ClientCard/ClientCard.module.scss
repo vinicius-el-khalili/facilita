@@ -6,13 +6,33 @@
     display: grid;
     grid-template-columns: 1fr auto;
     .attributes {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding-right: var(--padding);
         .attribute {
-            display: flex;
-            gap: var(--gap);
-            align-items: center;
-            .icon,.value {
+            display: grid;
+            grid-template-columns: auto 6rem 1fr;
+            gap: 5px;
+            @media screen and (max-width:400px) {
+                grid-template-columns: 1rem 6rem;;
+            }
+            .icon,.value.description {
                 display: flex;
                 align-items: center;
+            }
+            .icon {
+                color: gray;
+            }
+            .description {
+                color: rgba(0,0,0,.7);
+                font-weight: lighter;
+                font-size: .9em;
+                padding-top: 2px;
+            }
+            .value {
+                padding: 0 0 0 0;
+                font-weight: bold;
             }
         }
     }
@@ -38,14 +58,20 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         width: fit-content;
+        margin: auto;
+        border-top: 1px solid lightgray;
+        justify-items: center;
         p {
             grid-column: span 2;
             padding: calc(var(--padding) / 2);
+            font-weight: bolder;
+            text-align: center;
         }
         .buttons {
+            grid-column: span 2;
             display: flex;
-            padding-left: calc(var(--padding) / 2);
             gap: var(--gap);
+
         }
         .button {
             box-shadow: var(--boxShadow);
@@ -58,6 +84,12 @@
             cursor: pointer;
             &:hover {
                 background-color: rgb(217, 217, 217);
+            }
+            &:nth-child(1){
+                &:hover {
+                    background-color: var(--red);
+                    color: white;
+                }
             }
         }
     }

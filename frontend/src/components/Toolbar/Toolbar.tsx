@@ -1,7 +1,7 @@
 import { FaPlus, FaRoute } from 'react-icons/fa';
 import SearchBox from '../SearchBox/SearchBox';
 import style from './Toolbar.module.scss';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import AppContext from '../../contexts/AppContext';
 
@@ -9,6 +9,12 @@ export const Toolbar = () => {
 
     const context = useContext(AppContext)
     const [registerForm, setRegisterForm] = useState<boolean>(false);
+
+    useEffect(()=>{
+
+        setRegisterForm(false)
+        
+    },[context.state.clients])
 
     return (
         <div className={style.Toolbar}>

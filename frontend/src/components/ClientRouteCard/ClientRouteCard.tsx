@@ -18,7 +18,10 @@ const ClientRouteCard = ({client}:{
 
                 <div className={style.attribute}>
                     <div className={style.icon}><LuMapPin/></div>
-                    <div className={style.value}>{`x: ${client.x}, y:${client.y}`}</div>
+                    <div className={style.value}>
+                        <span style={{fontWeight:"bolder",marginRight:3}}>x:</span>{client.x},
+                        <span style={{fontWeight:"bolder",marginRight:3,marginLeft:3}}>y:</span>{client.y}
+                    </div>
                 </div>
 
             </div>

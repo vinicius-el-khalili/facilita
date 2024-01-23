@@ -20,22 +20,29 @@ const ClientCard = ({client}:{
 
                 <div className={style.attribute}>
                     <div className={style.icon}><FaUser/></div>
+                    <div className={style.description}>Nome</div>
                     <div className={style.value}>{client.nome}</div>
                 </div>
 
                 <div className={style.attribute}>
                     <div className={style.icon}><MdOutlineMail/></div>
+                    <div className={style.description}>Email</div>
                     <div className={style.value}>{client.email}</div>
                 </div>
 
                 <div className={style.attribute}>
                     <div className={style.icon}><LuPhone/></div>
+                    <div className={style.description}>Telefone</div>
                     <div className={style.value}>{client.telefone}</div>
                 </div>
 
                 <div className={style.attribute}>
                     <div className={style.icon}><LuMapPin/></div>
-                    <div className={style.value}>{`x: ${client.x}, y:${client.y}`}</div>
+                    <div className={style.description}>Coordenadas</div>
+                    <div className={style.value}>
+                        <span style={{fontWeight:"lighter",marginRight:6}}>x:</span>{client.x}
+                        <span style={{fontWeight:"lighter",marginRight:6,marginLeft:12}}>y:</span>{client.y}
+                    </div>
                 </div>
 
             </div>
@@ -51,8 +58,16 @@ const ClientCard = ({client}:{
             <div className={style.deleteCheckBox}>
                 <p>Deletar usuário?</p>
                 <div className={style.buttons}>
-                    <div className={style.button} onClick={()=>{ context.services.deleteClient(client.id) }}>Sim</div>
-                    <div className={style.button}>Não</div>
+                    <div
+                    className={style.button}
+                    onClick={()=>{ context.services.deleteClient(client.id) }}>
+                        Sim
+                    </div>
+                    <div 
+                    className={style.button}
+                    onClick={()=>{ setDeleteCheck(false) }}>
+                        Não
+                    </div>
                 </div>
             </div>
             }
