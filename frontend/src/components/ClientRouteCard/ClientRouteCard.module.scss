@@ -1,0 +1,65 @@
+.ClientRouteCard {
+
+    box-shadow: var(--boxShadow);
+    padding: var(--padding);
+    border-radius: var(--borderRadius);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    .attributes {
+        .attribute {
+            display: flex;
+            gap: var(--gap);
+            align-items: center;
+            .icon,.value {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+    .deleteButton {
+        $size: 30px;
+        padding: 3px;
+        width: $size;
+        height: $size;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--borderRadius);
+        box-shadow: var(--boxShadow);
+        cursor: pointer;
+        &:hover {
+            background-color: rgb(217, 217, 217);
+        }
+    }
+
+    .deleteCheckBox {
+
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: fit-content;
+        p {
+            grid-column: span 2;
+            padding: calc(var(--padding) / 2);
+        }
+        .buttons {
+            display: flex;
+            padding-left: calc(var(--padding) / 2);
+            gap: var(--gap);
+        }
+        .button {
+            box-shadow: var(--boxShadow);
+            width: 3rem;
+            height: 1.5rem;
+            box-shadow: var(--boxShadow);
+            border-radius: var(--borderRadius);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            &:hover {
+                background-color: rgb(217, 217, 217);
+            }
+        }
+    }
+
+}

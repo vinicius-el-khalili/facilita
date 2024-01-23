@@ -3,6 +3,7 @@ import ClientCard from "../ClientCard/ClientCard";
 import Toolbar from '../Toolbar/Toolbar';
 import style from "./ClientList.module.scss"
 import AppContext from "../../contexts/AppContext";
+import ClientRoutes from "../ClientRoutes/ClientRoutes";
 
 const ClientList = () => {
 
@@ -20,6 +21,7 @@ const ClientList = () => {
                 ))
                 }
             </div>
+            <ClientRoutes/>
         </div>
     );
 }

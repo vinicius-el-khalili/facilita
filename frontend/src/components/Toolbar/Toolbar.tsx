@@ -12,29 +12,22 @@ export const Toolbar = () => {
 
     return (
         <div className={style.Toolbar}>
-
             <SearchBox />
-
             <div className={style.ButtonsContainer}>
-
                 <div
                 className={`${style.Button} ${registerForm && style.ButtonOn}`}
                 onClick={() => { setRegisterForm(!registerForm); }}>
                     <FaPlus /> Cadastrar cliente
                 </div>
-
                 <div
                 className={style.Button}
                 onClick={context.services.calculateRoutes}>
                     <FaRoute /> Calcular rotas
                 </div>
-
             </div>
-
             <div className={`${style.RegisterFormContainer} ${registerForm && style.RegisterFormContainerOn}`}>
                 <RegisterForm />
             </div>
-
         </div>
     );
 };
