@@ -1,12 +1,5 @@
 # Como rodar o projeto localmente
 
-# Dependências
-
-* psql (PostgreSQL) 16.1 
-* node 18.17.1
-* npm 9.6.7
-* TypeScript 5.3.3
-
 # 1. PostgreSQL
 
 Para a base de dados PostgreSQL, basta inicializar o PostgreSQL em sua máquina local e transferir suas configurações de acesso para as variáveis de ambiente em `@/backend/.env`. 
@@ -75,3 +68,14 @@ npm install
 ```bash
 npm run dev
 ```
+
+3.3. Acesse a aplicação em `http://localhost:5173`
+
+
+# Dependências utilizadas
+
+* psql (PostgreSQL) 16.1 
+* node 18.17.1
+* npm 9.6.7
+* TypeScript 5.3.3
+* Vite 4
