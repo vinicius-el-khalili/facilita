@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, createContext } from "react";
-import { ClientType } from "../types/types";
+import { ClientType, CreateClientParameters } from "../types/types";
 
 type AppContextTypes = {
     state: {
@@ -8,12 +8,12 @@ type AppContextTypes = {
     }
     services: {
         getClients: () => void
-        createClient: () => void
-        deleteClient: () => void
+        createClient: (client: CreateClientParameters) => void
+        deleteClient: (id:number) => void
         calculateRoutes: () => void
     }
     actions: {
-        filterClients: () => void
+        filterClients: (str: string, option:string) => void
     }
 }
 

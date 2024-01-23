@@ -11,6 +11,6 @@ export type CreateClientParameters = {
     nome: string,
     email: string,
     telefone: string,
-    x: string,
-    y: string
+    x: number,
+    y: number
 }

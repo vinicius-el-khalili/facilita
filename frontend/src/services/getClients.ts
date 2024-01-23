@@ -1,3 +1,5 @@
+import { ClientType } from "../types/types"
+
 export const getClients = async () => {
 
     try {
@@ -18,7 +20,7 @@ export const getClients = async () => {
             return false
         }
 
-        let data: any
+        let data: ClientType[]
         switch(response.status){
             case 200:
                 console.log(`@getClients: success`)
