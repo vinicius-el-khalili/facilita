@@ -1,20 +1,33 @@
-export const getClients = async () => {
+export const createClient = async (
+    name: string,
+    email: string,
+    phone: string,
+    x: number,
+    y: number
+) => {
 
     try {
 
-        let url = import.meta.env.VITE_REACT_NODE_SERVER_URL
+        let url = `${import.meta.env.VITE_REACT_NODE_SERVER_URL}/add`
 
         let headers = {
             "Accept": "application/json",
             "Content-Type": "application/json",
         }
-
-        let response = await fetch(`${url}`, {
-            method: "GET",
-            headers
+    
+        let body = JSON.stringify({
+            nome: name,
+            email: email,
+            telefone: phone,
+            x: x,
+            y: y
         })
-
-        console.log(response)
+    
+        let response = await fetch(`${url}`, {
+            method: "POST",
+            headers,
+            body
+        })
 
         if (!response) {
             return false
@@ -30,11 +43,11 @@ export const getClients = async () => {
                 console.log(`@getClients: ${response.status}`)
                 return false
         }
-
+    
         
-    } catch(error) {
+    } catch {
 
-        console.log(`@getClients: fetch fail`)
+        console.log(`@createClient: fetch fail`)
         return false
 
     }
