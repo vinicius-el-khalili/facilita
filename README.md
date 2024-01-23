@@ -1,5 +1,11 @@
 # Como rodar o projeto localmente
 
+# Dependências
+
+* psql (PostgreSQL) 16.1 
+* node 18.17.1
+* npm 9.6.7
+* TypeScript 5.3.3
 
 # 1. PostgreSQL
 
