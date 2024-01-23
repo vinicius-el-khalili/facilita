@@ -36,11 +36,11 @@ export const createClient = async (
         let data: any
         switch(response.status){
             case 200:
-                console.log(`@getClients: success`)
+                console.log(`@createClients: success`)
                 data = await response.json()
                 return data
             default:
-                console.log(`@getClients: ${response.status}`)
+                console.log(`@createClients: ${response.status}`)
                 return false
         }
     
