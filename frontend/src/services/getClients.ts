@@ -14,8 +14,6 @@ export const getClients = async () => {
             headers
         })
 
-        console.log(response)
-
         if (!response) {
             return false
         }
