@@ -30,17 +30,21 @@ Para inicializar o servidor Node.js, primeiro instale as depêndencias presentes
 
 #### @/backend/
 
-```terminal
+```bash
 npm install
 ```
 A seguir, inicie o servidor com o comando
 
 #### @/backend/
 
-```terminal
+```bash
 npm run server
 ```
 
-O servidor vai iniciar a base de dados. O output deve ser igual ao mostrado abaixo: 
+Se desejar acessar o servidor em um ambiente de desenvolvimento, inclua o seguinte comando em outro terminal para realizar a compilação contínua dos arquivos TypeScript:
 
-<img src="/readme_images/npm_run_server.png" alt="Alt Text" width="300">
+#### @/backend/
+
+```bash
+tsc --watch
+```
