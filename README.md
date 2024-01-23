@@ -41,4 +41,6 @@ A seguir, inicie o servidor com o comando
 npm run server
 ```
 
+O servidor vai iniciar a base de dados. O output deve ser igual ao mostrado abaixo: 
+
 <img src="/readme_images/npm_run_server.png" alt="Alt Text" width="300">
