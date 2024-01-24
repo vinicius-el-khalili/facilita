@@ -82,6 +82,9 @@ export const executeBruteForceMethod = (coordinates:CoordinatesType[]) => {
 
     console.log("Calculating routes via Brute Force...")
     
+    shortestDistance = Infinity
+    shortestPath = []
+
     let graph = getGraph(coordinates)
     BruteForce(graph,[],0,0)
 
