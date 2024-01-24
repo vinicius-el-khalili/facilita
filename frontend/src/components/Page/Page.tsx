@@ -11,7 +11,7 @@ const Page = () => {
 
     return (
         <div className={style.Page}>
-            <h1>Clientes</h1>
+            <h1><img src="icon.svg" height={25} width={25}/> Facilita Jurídico - Processo seletivo</h1>
             <Toolbar/>
             <div className={style.list}>
                 {

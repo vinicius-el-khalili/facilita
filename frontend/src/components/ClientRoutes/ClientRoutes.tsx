@@ -14,7 +14,7 @@ const ClientRoutes = () => {
             <div className={style.ClientRoutes}>
 
                 <div className={style.header}>
-                    <h1>MELHOR ROTA</h1>
+                    <h1>Melhor rota</h1>
                     <div className={style.distance}>Distância: {context.state.clientRoutes.shortestDistance.toFixed(2)}</div>
                 </div>
 
