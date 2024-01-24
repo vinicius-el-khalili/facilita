@@ -1,8 +1,8 @@
-import Hi from "./components/hi/Hi"
+import Page from "./components/Page/Page"
 function App() {
   return (
     <>
-    <Hi/>
+    <Page/>
     </>
   )
 }

@@ -11,6 +11,7 @@
     justify-content: center;
 }
 .ClientRoutes {
+    position: relative;
     height: 80vh;
     width: 80vw;
     background-color: white;
@@ -45,6 +46,19 @@
         align-items: center;
         gap: var(--gap);
     }
+
+    .closeButton {
+        font-size: 2rem;
+        position: absolute;
+        justify-self: end;
+        transform: translate(-1rem,1rem);
+        box-shadow: var(--boxShadow);
+        height: 2rem;
+        width: 2rem;
+        border-radius: var(--borderRadius);
+        cursor: pointer;
+    }
+    
 }
 
 .closeButton {
